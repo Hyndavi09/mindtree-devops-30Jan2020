@@ -30,6 +30,10 @@ node {
    stage('Archive-Artifacts') {
    archiveArtifacts 'target/*.war'
   }
+  stage('Deploy approval')
+	{
+	input "Deploy prod?"
+	}
    stage('Docker-Stage-Deployment') {
    sh label: '', script: 'docker-compose up -d --build'
   }
